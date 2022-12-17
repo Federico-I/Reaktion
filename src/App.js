@@ -1,11 +1,14 @@
 "strict mode";
 import { v4 as uuidv4 } from "uuid";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import Header from "./Components/Header";
 import ReaktionList from "./Components/ReaktionList";
 import ReactionStats from "./Components/ReactionStats";
 import ReaktionData from "./Data/ReaktionData";
 import ReaktionForm from "./Components/ReaktionForm";
+import AboutReaktion from "./Pages/AboutReaktion";
+import AboutIconLink from "./Components/AboutIconLink";
 
 function App() {
   const [displayData, setDisplayData] = useState(ReaktionData);
@@ -22,14 +25,28 @@ function App() {
   };
 
   return (
-    <>
+    <Router>
       <Header />
       <div className="container">
-        <ReaktionForm handleAdd={addFeedback} />
-        <ReactionStats feedback={displayData} />
-        <ReaktionList feedback={displayData} handleDelete={deleteFeedback} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <ReaktionForm handleAdd={addFeedback} />
+                <ReactionStats feedback={displayData} />
+                <ReaktionList
+                  feedback={displayData}
+                  handleDelete={deleteFeedback}
+                />
+              </>
+            }
+          />
+          <Route path="/about" element={<AboutReaktion />} />
+        </Routes>
+        <AboutIconLink />
       </div>
-    </>
+    </Router>
   );
 }
 export default App;
