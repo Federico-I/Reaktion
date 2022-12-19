@@ -1,8 +1,10 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 function RatingSelect({ select }) {
   const [selected, setSelected] = useState(10);
+
+  const {} = useContext();
 
   const handleChange = (e) => {
     setSelected(+e.currtTarget.value);

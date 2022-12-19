@@ -1,14 +1,25 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import Card from "./Shared/Card";
 import Button from "./Shared/Button";
 import RatingSelect from "./RatingSelect";
+import ReaktionContext from "../Context/ReaktionContext";
 
-function ReaktionForm({ handleAdd }) {
+function ReaktionForm() {
   const [text, setText] = useState();
   const [rating, setRating] = useState();
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState();
+
+  const { addFeedback, editReaktion } = useContext(ReaktionContext);
+
+  useEffect(() => {
+    if (editReaktion.edit === true) {
+      setBtnDisabled(false);
+      setText(editReaktion.item.text);
+      setRating(editReaktion.rating);
+    }
+  }, [editReaktion]);
 
   const handleTextChange = (e) => {
     if (text === "") {
@@ -32,7 +43,7 @@ function ReaktionForm({ handleAdd }) {
         rating,
       };
 
-      handleAdd(newFeedback);
+      addFeedback(newFeedback);
     }
   };
 
@@ -59,6 +70,6 @@ function ReaktionForm({ handleAdd }) {
   );
 }
 
-ReaktionForm.propType = {};
+// ReaktionForm.propType = {}; ???
 
 export default ReaktionForm;

@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { motion, AnimatePrescence } from "framer-motion";
-import PropTypes from "prop-types";
+import { useContext } from "react/cjs/react.production.min";
+//import PropTypes from "prop-types";
 import ReaktionItem from "./ReaktionItem";
+import ReaktionContext from "../Context/ReaktionContext";
 
-function ReaktionList({ feedback, handleDelete }) {
+function ReaktionList() {
+  const { feedback } = useContext(ReaktionContext);
+
   if (!feedback || feedback.lenght() === 0) {
     return <p>There is no information to display yet.</p>;
   }
@@ -21,7 +25,7 @@ function ReaktionList({ feedback, handleDelete }) {
             <ReaktionItem
               key={item.id}
               item={item}
-              handleDelete={handleDelete}
+              // handleDelete={handleDelete}
             />
           </motion.div>
         ))}
@@ -39,6 +43,7 @@ function ReaktionList({ feedback, handleDelete }) {
   );*/
 }
 
+/*
 ReaktionList.propTypes = {
   feedback: PropTypes.arrayOf(
     PropTypes.shape({
@@ -48,5 +53,6 @@ ReaktionList.propTypes = {
     })
   ),
 };
+*/
 
 export default ReaktionList;

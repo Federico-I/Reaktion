@@ -1,6 +1,11 @@
 import PropTypes from "prop-types";
+import { useContext } from "react/cjs/react.production.min";
+import ReaktionContext from "../Context/ReaktionContext";
 
-function ReactionStats({ feedback }) {
+function ReaktionStats() {
+  const { feedback } = useContext(ReaktionContext);
+
+  // Calculate the average
   let average =
     feedback.reduce((acc, cur) => {
       return acc + cur.rating;
@@ -16,8 +21,10 @@ function ReactionStats({ feedback }) {
   );
 }
 
-ReactionStats.propTypes = {
+/*
+ReaktionStats.propTypes = {
   feedback: PropTypes.array.isRequired,
 };
+*/
 
-export default ReactionStats;
+export default ReaktionStats;
