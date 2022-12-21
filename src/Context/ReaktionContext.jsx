@@ -1,31 +1,29 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 const ReaktionContext = createContext();
 
 export const ReaktionProvider = ({ children }) => {
-  const { displayData, setDisplayData } = useState([
-    {
-      id: 1,
-      text: "This is item 1",
-      rating: 7,
-    },
-    {
-      id: 2,
-      text: "This is item 2",
-      rating: 5,
-    },
-    {
-      id: 3,
-      text: "This is item 3",
-      rating: 10,
-    },
-  ]);
-
+  const [Loading, setLoading] = useState(true);
+  const { displayData, setDisplayData } = useState([]);
   const [editReaktion, setEditReaktion] = useState({
     item: {},
     edit: false,
   });
+
+  useEffect(() => {
+    fetchReaktion();
+  }, []);
+
+  // Fetch Feedback
+  const fetchReaktion = async () => {
+    const response = await fetch(
+      "http://localhost:5000/feedback?_sort=id&desc"
+    );
+    const data = await response.json();
+    setDisplayData(data);
+    setLoading(false);
+  };
 
   // Add Feedback
   const addFeedback = (newFeedback) => {

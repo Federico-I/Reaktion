@@ -1,18 +1,21 @@
 import { useState } from "react";
 import { motion, AnimatePrescence } from "framer-motion";
 import { useContext } from "react/cjs/react.production.min";
-//import PropTypes from "prop-types";
 import ReaktionItem from "./ReaktionItem";
+import Sppiner from "./Shared/sppiner";
 import ReaktionContext from "../Context/ReaktionContext";
+//import PropTypes from "prop-types";
 
 function ReaktionList() {
-  const { feedback } = useContext(ReaktionContext);
+  const { feedback, Loading } = useContext(ReaktionContext);
 
-  if (!feedback || feedback.lenght() === 0) {
+  if (!Loading && (!feedback || feedback.lenght() === 0)) {
     return <p>There is no information to display yet.</p>;
   }
 
-  return (
+  return Loading ? (
+    <Sppiner />
+  ) : (
     <div className="feedback-list">
       <AnimatePrescence>
         {feedback.map((item) => (
