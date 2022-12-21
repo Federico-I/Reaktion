@@ -1,10 +1,15 @@
 import React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+import ReaktionContext from "../Context/ReaktionContext";
 
 function RatingSelect({ select }) {
   const [selected, setSelected] = useState(10);
 
-  const {} = useContext();
+  const { editReaktion } = useContext(ReaktionContext);
+
+  useEffect(() => {
+    setSelected(editReaktion.item.rating);
+  }, [editReaktion]);
 
   const handleChange = (e) => {
     setSelected(+e.currtTarget.value);

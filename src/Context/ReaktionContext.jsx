@@ -27,18 +27,29 @@ export const ReaktionProvider = ({ children }) => {
     edit: false,
   });
 
+  // Add Feedback
   const addFeedback = (newFeedback) => {
     newFeedback.id = uuidv4();
     setDisplayData([newFeedback, ...displayData]);
   };
 
+  // Delete Feedback
   const deleteFeedback = (id) => {
     if (window.confirm("Are you sure you want to delete this Item?")) {
       setDisplayData(displayData.filter((item) => item.id !== id));
     }
   };
 
-  // set item to be updated
+  //Update feedback Item
+  const updateFeedback = (id, updItem) => {
+    setDisplayData(
+      displayData.map((item) =>
+        item.id === id ? { ...item, ...updItem } : item
+      )
+    );
+  };
+
+  // set item to be Updated
   const editFeedback = (item) => {
     setEditReaktion({
       item,
@@ -54,6 +65,7 @@ export const ReaktionProvider = ({ children }) => {
         deleteFeedback,
         editFeedback,
         editReaktion,
+        updateFeedback,
       }}
     >
       {children}

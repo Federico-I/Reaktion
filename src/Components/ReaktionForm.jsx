@@ -11,7 +11,8 @@ function ReaktionForm() {
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState();
 
-  const { addFeedback, editReaktion } = useContext(ReaktionContext);
+  const { addFeedback, editReaktion, updateFeedback } =
+    useContext(ReaktionContext);
 
   useEffect(() => {
     if (editReaktion.edit === true) {
@@ -43,7 +44,13 @@ function ReaktionForm() {
         rating,
       };
 
-      addFeedback(newFeedback);
+      if (editReaktion.edit === true) {
+        updateFeedback(editReaktion.item.id, newFeedback);
+      } else {
+        addFeedback(newFeedback);
+      }
+
+      setText("");
     }
   };
 
