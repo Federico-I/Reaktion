@@ -35,27 +35,6 @@ function ReaktionList() {
       </AnimatePrescence>
     </div>
   );
-
-  /* unanimated version 
-  return (
-    <div className="feedback-list">
-      {feedback.map((item) => (
-        <ReaktionItem key={item.id} item={item} handleDelete={handleDelete} />
-      ))}
-    </div>
-  );*/
 }
-
-/*
-ReaktionList.propTypes = {
-  feedback: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      text: PropTypes.string.isRequired,
-      rating: PropTypes.number.isRequired,
-    })
-  ),
-};
-*/
 
 export default ReaktionList;
