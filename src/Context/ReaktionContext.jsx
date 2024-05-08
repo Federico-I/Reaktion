@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 const ReaktionContext = createContext();
 
 export const ReaktionProvider = ({ children }) => {
-  const [Loading, setLoading] = useState(true);
+  const [Loading, setLoading] = useState(true); /////////////// check const ?????
   const { displayData, setDisplayData } = useState([]);
   const [editReaktion, setEditReaktion] = useState({
     item: {},
@@ -13,7 +13,7 @@ export const ReaktionProvider = ({ children }) => {
 
   useEffect(() => {
     fetchReaktion();
-  }, []);
+  }, []); ///////////////// check missing value ????????
 
   // Fetch Feedback
   const fetchReaktion = async () => {
