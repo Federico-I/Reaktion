@@ -77,6 +77,4 @@ function ReaktionForm() {
   );
 }
 
-// ReaktionForm.propType = {}; ???
-
 export default ReaktionForm;

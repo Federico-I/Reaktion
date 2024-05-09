@@ -5,7 +5,7 @@ const ReaktionContext = createContext();
 
 export const ReaktionProvider = ({ children }) => {
   const [Loading, setLoading] = useState(true); /////////////// check const ?????
-  const { displayData, setDisplayData } = useState([]);
+  const [ displayData, setDisplayData ] = useState([]);
   const [editReaktion, setEditReaktion] = useState({
     item: {},
     edit: false,
@@ -13,7 +13,7 @@ export const ReaktionProvider = ({ children }) => {
 
   useEffect(() => {
     fetchReaktion();
-  }, []); ///////////////// check missing value ????????
+  }, []);
 
   // Fetch Feedback
   const fetchReaktion = async () => {
