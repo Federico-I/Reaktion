@@ -1,4 +1,3 @@
-import React from "react";
 import Card from "../Components/Shared/Card";
 import { Link } from "react-router-dom";
 
