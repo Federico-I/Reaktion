@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { motion, AnimatePrescence } from "framer-motion";
 import { useContext } from "react/cjs/react.production.min";
 import ReaktionItem from "./ReaktionItem";
@@ -28,7 +28,7 @@ function ReaktionList() {
             <ReaktionItem
               key={item.id}
               item={item}
-              // handleDelete={handleDelete}
+              // handleDelete={handleDelete} /// check 
             />
           </motion.div>
         ))}
