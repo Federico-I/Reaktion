@@ -1,18 +1,8 @@
 import React from "react";
-import { useState, useContext, useEffect } from "react";
-import ReaktionContext from "../Context/ReaktionContext";
 
-function RatingSelect({ select }) {
-  const [selected, setSelected] = useState(10);
-
-  const { editReaktion } = useContext(ReaktionContext);
-
-  useEffect(() => {
-    setSelected(editReaktion.item.rating);
-  }, [editReaktion]);
+function RatingSelect({ select, selectedRate }) {
 
   const handleChange = (e) => {
-    setSelected(+e.currtTarget.value);
     select(+e.currtTarget.value);
   };
 
@@ -26,11 +16,11 @@ function RatingSelect({ select }) {
             name="rating"
             value={i + 1}
             onChange={handleChange}
-            checked={selected === i + 1}
+            checked={selectedRate === i + 1}
           />
           <label htmlFor={`num${i + 1}`}>{i + 1}</label>
         </li>
-      ))}
+      ))};
     </ul>
   );
 }

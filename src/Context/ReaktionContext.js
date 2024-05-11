@@ -1,10 +1,10 @@
 import { createContext, useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
 const ReaktionContext = createContext();
 
 export const ReaktionProvider = ({ children }) => {
-  const [Loading, setLoading] = useState(true); /////////////// check const ?????
+  const [loading, setLoading] = useState(true); /////////////// check const ?????
   const [displayData, setDisplayData] = useState([]);
   const [editReaktion, setEditReaktion] = useState({
     item: {},
@@ -66,6 +66,11 @@ export const ReaktionProvider = ({ children }) => {
         ( item.id === id ? { updatedData } : item)
       )
     );
+
+    setEditReaktion({
+      item: {},
+      edit: false,
+    });
   };
 
   // set item to be Updated
@@ -80,10 +85,11 @@ export const ReaktionProvider = ({ children }) => {
     <ReaktionContext.Provider
       value={{
         displayData,
-        addFeedback,
-        deleteFeedback,
-        editFeedback,
         editReaktion,
+        loading,
+        deleteFeedback,
+        addFeedback,
+        editFeedback,
         updateFeedback,
       }}
     >

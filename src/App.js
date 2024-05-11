@@ -22,10 +22,7 @@ function App() {
                 <>
                   <ReaktionForm />
                   <ReaktionStats />
-                  <ReaktionList
-                  // feedback={displayData}
-                  // handleDelete={deleteFeedback}
-                  />
+                  <ReaktionList/>
                 </>
               }
             />
