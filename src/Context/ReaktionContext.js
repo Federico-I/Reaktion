@@ -5,7 +5,7 @@ const ReaktionContext = createContext();
 
 export const ReaktionProvider = ({ children }) => {
   const [Loading, setLoading] = useState(true); /////////////// check const ?????
-  const [ displayData, setDisplayData ] = useState([]);
+  const [displayData, setDisplayData] = useState([]);
   const [editReaktion, setEditReaktion] = useState({
     item: {},
     edit: false,
@@ -17,8 +17,9 @@ export const ReaktionProvider = ({ children }) => {
 
   // Fetch Feedback
   const fetchReaktion = async () => {
-    const response = await fetch("/feedback?_sort=id&desc");
+    const response = await fetch("/feedback?_sort=id&_order=desc");
     const data = await response.json();
+
     setDisplayData(data);
     setLoading(false);
   };
@@ -35,7 +36,7 @@ export const ReaktionProvider = ({ children }) => {
 
     const data = await response.json();
 
-    newFeedback.id = uuidv4();
+    // newFeedback.id = uuidv4();
     setDisplayData([data, ...displayData]);
   };
 
@@ -62,7 +63,7 @@ export const ReaktionProvider = ({ children }) => {
 
     setDisplayData(
       displayData.map((item) =>
-        item.id === id ? { ...item, ...updatedData } : item
+        ( item.id === id ? { updatedData } : item)
       )
     );
   };
